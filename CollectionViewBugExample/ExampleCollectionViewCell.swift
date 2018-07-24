@@ -20,7 +20,7 @@ class ExampleCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .green
+        backgroundColor = randomColor
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 16)
@@ -42,12 +42,12 @@ class ExampleCollectionViewCell: UICollectionViewCell {
         listener?.addCell()
     }
     
-    func anotherGetRandomColor()->UIColor{
-        
-        let newRed   = arc4random_uniform(255)/255
-        let newGreen = arc4random_uniform(255)/255
-        let newBlue  = arc4random_uniform(255)/255
-        
-        return UIColor(red: CGFloat(newRed), green: CGFloat(newGreen), blue: CGFloat(newBlue), alpha: 1.0)
+    private var randomFloat: CGFloat {
+        return CGFloat(arc4random()) / CGFloat(UInt32.max)
+    }
+    
+    private var randomColor: UIColor {
+        return UIColor(red: randomFloat, green: randomFloat, blue: randomFloat, alpha: 1.0)
     }
 }
+

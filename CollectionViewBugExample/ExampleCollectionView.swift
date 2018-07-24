@@ -9,7 +9,9 @@
 import UIKit
 
 class ExampleCollectionView: UICollectionView {
-    var items = ["this", "that", "the other"]
+    var items = ["TAP ME"]
+    
+    var words = ["To define a custom invalidation context for your layout, subclass the UICollectionViewLayoutInvalidationContext class. In your subclass,", " define custom properties that represent the parts of your layout data that can be recomputed independently.", " When you need to invalidate your layout at runtime, create an instance of your invalidation context subclass, configure the custom properties based on what layout information changed, and pass that object to your layout’s invalidateLayoutWithContext: method.", " Your custom implementation of that method can use the information in the invalidation context to recompute only the portions of your layout that changed.", "If you define a custom invalidation context class for your layout object, you should also override the invalidationContextClass method and return your custom class. ", "Returning your custom subclass from this method ensures that your layout object always has the invalidation context it expects.", "In addition to these methods, you can also override the prepareForCollectionViewUpdates: to handle any layout-related preparation.", "You can also override the finalizeCollectionViewUpdates method and use it to add animations to the overall animation block or to implement any final layout-related tasks."]
 
     convenience init() {
         let layout = UICollectionViewFlowLayout()
@@ -36,8 +38,9 @@ extension ExampleCollectionView: UICollectionViewDataSource, CollectionViewCellL
     }
     
     func addCell() {
-        items.append(items[Int(arc4random_uniform(UInt32(items.count)))])
+        items.append(words[Int(arc4random_uniform(UInt32(words.count)))])
         insertItems(at: [IndexPath(item: items.endIndex - 1, section: 0)])
+        scrollToItem(at: IndexPath(item: items.endIndex - 1, section: 0), at: .bottom, animated: true)
     }
 }
 

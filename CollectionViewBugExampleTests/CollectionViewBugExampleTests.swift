@@ -13,7 +13,6 @@ class CollectionViewBugExampleTests: XCTestCase {
     
     func testExample() {
         let collectionView = ExampleCollectionView()
-        
         collectionView.addCell()
         XCTAssertEqual(collectionView.numberOfItems(inSection: 0), 1, "Not enough items in section.")
     }
